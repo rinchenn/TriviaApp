@@ -23,7 +23,7 @@ From the backend folder run
 pip3 install -r requirements.txt
 ```
 
-##Database setup
+## Database setup
 ### Step 0: Start/Stop the PostgreSQL server
 Mac users can follow the commands below:
 ```bash
@@ -76,8 +76,7 @@ These commands put the application in development and directs our application
 to use the `__init__.py` file in our flaskr folder. Working in development mode shows an 
 interactive debugger in the console and restarts the server whenever changes are made. 
 
-##FrontEnd 
-
+## FrontEnd 
 ### Navigate to the `/frontend` folder and run the following commands 
 ```
 npm install // only once to install dependencies

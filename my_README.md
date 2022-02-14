@@ -1,4 +1,89 @@
-### Error Handling
+## Local Development
+The instruction below are meant for the local environment setup.
+## Backend
+### Pre-requisites
+* Python3, pip/pip3 and node should be already installed on their local machine
+
+* **Start your virtual environment**
+From the backend folder run
+```
+# Mac users
+python3 -m venv venv
+source venv/bin/activate
+
+# Windows users
+python -3 -m venv venv
+venv\Scripts\activate
+```
+
+* **Install dependencies**<br>
+From the backend folder run
+```
+# All required packages are included in the requirements.txt file.
+pip3 install -r requirements.txt
+```
+
+### Step 0: Start/Stop the PostgreSQL server
+Mac users can follow the commands below:
+```bash
+which postgres
+postgres --version
+# Start/stop
+pg_ctl -D /usr/local/var/postgres start
+pg_ctl -D /usr/local/var/postgres stop 
+```
+Windows users can follow the commands below:
+- Find the database directory, it should be something like that: *C:\Program Files\PostgreSQL\13.2\data*
+- Then, in the command line, execute the folllowing command: 
+```bash
+# Start the server
+pg_ctl -D "C:\Program Files\PostgreSQL\13.2\data" start
+# Stop the server
+pg_ctl -D "C:\Program Files\PostgreSQL\13.2\data" stop
+```
+If it shows that the *port already occupied* error, run:
+```bash
+sudo su - 
+ps -ef | grep postmaster | awk '{print $2}'
+kill <PID> 
+```
+
+### Step 1 - Create and Populate the database
+1. **Verify the database username**<br>
+Verify that the database user in the `/backend/trivia.psql`, `/backend/models.py`, and `/backend/test_flaskr.py` files must be `postgres` (default username).
+2. **Create the database, tables and apply constraints**<br>
+In your terminal, navigate to the */TriviaApp/backend* directory, and run the following:
+```bash
+cd TriviaApp/backend
+# Connect to the PostgreSQL
+psql postgres
+#View all databases
+\l
+# Create the database, create a user - `student`, grant all privileges to the student
+\i trivia.sql
+# Exit the PostgreSQL prompt
+\q
+```
+### Run the Backend Server
+Navigate to the `/backend` folder run the following commands.
+```
+export FLASK_APP=flaskr
+export FLASK_ENV=development
+flask run --host=0.0.0.0
+```
+These commands put the application in development and directs our application 
+to use the `__init__.py` file in our flaskr folder. Working in development mode shows an 
+interactive debugger in the console and restarts the server whenever changes are made. 
+
+##FrontEnd 
+### Navigate to the `/frontend` folder and run the following commands 
+```
+npm install // only once to install dependencies
+npm start 
+```
+By default, the frontend will run on `localhost:3000`. 
+
+## Error Handling
 Errors are returned as JSON objects in the following format:
 ```
 {
@@ -13,7 +98,7 @@ The APIs will return four error types when reqeusts fail:
 - 405: Method not Found
 - 422: Not Processable
 
-### Endpoints
+## Endpoints
 #### GET /categories
 - General:
     - Returns a list of trivia categories, success value and total number of categories
@@ -222,4 +307,16 @@ The APIs will return four error types when reqeusts fail:
   },
   "success": true
 }
+```
+
+## Additional information
+#### Running Tests
+Navigate to the `/backend` folder and run the following commands: 
+```bash
+psql postgres
+dropdb trivai_test
+createdb trivia_test
+\q
+psql trivia_test < trivia.psql
+python test_flaskr.py
 ```

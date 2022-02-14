@@ -1,8 +1,8 @@
 ## Local Development
-The instruction below are meant for the local environment setup.
+The instruction below are meant for the local development setup.
 ## Backend
 ### Pre-requisites
-* Python3, pip/pip3 and node should be already installed on their local machine
+* Python3, pip/pip3 and node should be already installed on the local machine
 
 * **Start your virtual environment**
 From the backend folder run
@@ -23,6 +23,7 @@ From the backend folder run
 pip3 install -r requirements.txt
 ```
 
+##Database setup
 ### Step 0: Start/Stop the PostgreSQL server
 Mac users can follow the commands below:
 ```bash
@@ -76,6 +77,7 @@ to use the `__init__.py` file in our flaskr folder. Working in development mode 
 interactive debugger in the console and restarts the server whenever changes are made. 
 
 ##FrontEnd 
+
 ### Navigate to the `/frontend` folder and run the following commands 
 ```
 npm install // only once to install dependencies

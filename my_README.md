@@ -140,3 +140,86 @@ The APIs will return four error types when reqeusts fail:
     "total_questions": 20
 }
 ```
+#### POST /search/questions
+- General:
+    - Get all the questions based on the search term. Returns all the questions which is the search term is 
+    a substring of the question.
+    - Results are paginated in groups of 10.
+- Sample: `curl http://127.0.0.1:5000/search/questions -X POST -H "Content-Type: application/json" -d '{"searchTerm": "title"}`
+```
+{
+  "current_category": null,
+  "questions": [
+    {
+      "answer": "Maya Angelou",
+      "category": 4,
+      "difficulty": 2,
+      "id": 5,
+      "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
+    },
+    {
+      "answer": "Edward Scissorhands",
+      "category": 5,
+      "difficulty": 3,
+      "id": 6,
+      "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+    }
+  ],
+  "success": true,
+  "total_questions": 2
+}
+```
+#### GET /categories/{category_id}/questions
+- General:
+    - Returns a list of questions based of category, success value and total question in the selected category
+- Sample: `curl http://127.0.0.1:5000/categories/1/questions`
+```
+{
+  "questions": [
+    {
+      "answer": "The Liver",
+      "category": 1,
+      "difficulty": 4,
+      "id": 20,
+      "question": "What is the heaviest organ in the human body?"
+    },
+    {
+      "answer": "Alexander Fleming",
+      "category": 1,
+      "difficulty": 3,
+      "id": 21,
+      "question": "Who discovered penicillin?"
+    },
+    {
+      "answer": "Blood",
+      "category": 1,
+      "difficulty": 4,
+      "id": 22,
+      "question": "Hematology is a branch of medicine involving the study of what?"
+    }
+  ],
+  "success": true,
+  "total_questions": 3
+}
+
+```
+#### POST /quizzes
+- General:
+    - Returns a random question, success value and list of previous questions
+    - The previous questions list is not included in the random selection
+- Sample: ` curl http://127.0.0.1:5000/quizzes -X POST -H 'Content-Type: application/json' -d '{"previous_questions": ["1"], "quiz_category": {"id": 0}}'`
+```
+{
+  "previous_questions": [
+    "1"
+  ],
+  "question": {
+    "answer": "Blood",
+    "category": 1,
+    "difficulty": 4,
+    "id": 22,
+    "question": "Hematology is a branch of medicine involving the study of what?"
+  },
+  "success": true
+}
+```

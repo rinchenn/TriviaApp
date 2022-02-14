@@ -1,5 +1,5 @@
 ## Local Development
-The instruction below are meant for the local development setup.
+The instructions below are meant for the local development setup.
 ## Backend
 ### Pre-requisites
 * Python3, pip/pip3 and node should be already installed on the local machine

@@ -321,6 +321,6 @@ createdb trivia_test
 psql trivia_test < trivia.psql
 python test_flaskr.py
 ```
-`models.py` in the `/backend` folder has the configurations for the database variables like 
-database and port number 
+### `models.py` in the `/backend` folder has the configuration settings for the database like 
+database and port number.
 

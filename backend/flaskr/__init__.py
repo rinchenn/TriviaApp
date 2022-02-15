@@ -218,7 +218,7 @@ def create_app(test_config=None):
                     'current_category': None
                 })
         except:
-            print("Inside the except")
+            # print("Inside the except")
             abort(422)
     """
     @TODO:
@@ -284,7 +284,7 @@ def create_app(test_config=None):
 
             formatted_questions = [question.format() for question in quiz]
 
-            print('formatted questions: ', formatted_questions)
+            # print('formatted questions: ', formatted_questions)
             # If there are not questions left
             if len(formatted_questions) == 0:
                 return jsonify({

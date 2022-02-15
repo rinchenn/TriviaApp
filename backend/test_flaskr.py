@@ -2,7 +2,6 @@ import os
 import unittest
 import json
 from flask_sqlalchemy import SQLAlchemy
-
 from flaskr import create_app
 from models import setup_db, Question, Category
 
@@ -68,14 +67,14 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'resource not found')
 
     def test_delete_question(self):
-        res = self.client().delete('/questions/2')
+        res = self.client().delete('/questions/27')
         data = json.loads(res.data)
 
-        question = Question.query.filter(Question.id == 2).one_or_none()
+        question = Question.query.filter(Question.id == 27).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['delete_question_id'])
+        self.assertEqual(data['delete_question_id'], 27)
 
     def test_422_if_question_does_not_exist(self):
         res = self.client().delete('/questions/5000')
